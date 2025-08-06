@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weekly Dinner Preferences</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      line-height: 1.5;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    form {
+      display: grid;
+      gap: 1rem;
+    }
+    label {
+      font-weight: bold;
+    }
+    input[type="text"] {
+      padding: 0.5rem;
+      font-size: 1rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    button {
+      padding: 0.75rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    #message {
+      margin-top: 1rem;
+      font-weight: bold;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Weekly Dinner Preferences</h1>
+  <form id="preferencesForm">
+    <div>
+      <label for="monday">Monday Dinner</label>
+      <input type="text" id="monday" name="monday" required>
+    </div>
+    <div>
+      <label for="tuesday">Tuesday Dinner</label>
+      <input type="text" id="tuesday" name="tuesday" required>
+    </div>
+    <div>
+      <label for="wednesday">Wednesday Dinner</label>
+      <input type="text" id="wednesday" name="wednesday" required>
+    </div>
+    <div>
+      <label for="thursday">Thursday Dinner</label>
+      <input type="text" id="thursday" name="thursday" required>
+    </div>
+    <div>
+      <label for="friday">Friday Dinner</label>
+      <input type="text" id="friday" name="friday" required>
+    </div>
+    <div>
+      <label for="saturday">Saturday Dinner</label>
+      <input type="text" id="saturday" name="saturday" required>
+    </div>
+    <button type="submit">Submit Preferences</button>
+  </form>
+  <div id="message"></div>
+
+  <script>
+    const form = document.getElementById('preferencesForm');
+    const messageEl = document.getElementById('message');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const data = {
+        monday: form.monday.value.trim(),
+        tuesday: form.tuesday.value.trim(),
+        wednesday: form.wednesday.value.trim(),
+        thursday: form.thursday.value.trim(),
+        friday: form.friday.value.trim(),
+        saturday: form.saturday.value.trim()
+      };
+
+      try {
+        const response = await fetch('https://YOUR_N8N_HOST/webhook/submitPreferences', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+
+        if (response.ok) {
+          messageEl.textContent = 'Preferences saved successfully.';
+          form.reset();
+        } else {
+          messageEl.textContent = 'Failed to save preferences. Please try again.';
+        }
+      } catch (error) {
+        messageEl.textContent = 'Error: ' + error.message;
+      }
+    });
+  </script>
+</body>
+</html>
