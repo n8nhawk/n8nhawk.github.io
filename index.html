@@ -20,6 +20,14 @@
       line-height: 1.6;
       padding: 1rem;
     }
+    .grain {
+      pointer-events: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url('https://i.imgur.com/5bX5aXt.png') repeat;
+      opacity: 0.1;
+      z-index: 0;
+    }
     .container {
       max-width: 760px;
       margin: 2rem auto;
@@ -28,12 +36,13 @@
       border-radius: 8px;
       overflow: hidden;
       box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+      position: relative;
+      z-index: 1;
     }
     header {
-      position: relative;
-      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://upload.wikimedia.org/wikipedia/en/1/14/Vito_Corleone.jpg') center/cover no-repeat;
-      padding: 4rem 2rem;
+      background: rgba(0,0,0,0.7);
       text-align: center;
+      padding: 2rem;
       border-bottom: 2px solid var(--accent);
     }
     header h1 {
@@ -43,13 +52,18 @@
       color: var(--accent);
       text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
       letter-spacing: 2px;
+      margin-bottom: 1rem;
+    }
+    .godfather-img {
+      width: 150px;
+      height: auto;
+      border: 4px solid var(--accent);
+      border-radius: 8px;
     }
     form {
       padding: 2rem;
       display: grid;
       gap: 1.5rem;
-      position: relative;
-      z-index: 1;
     }
     fieldset {
       border: 1px solid var(--accent);
@@ -114,15 +128,6 @@
       font-weight: bold;
       color: var(--accent);
     }
-    /* Grain overlay effect */
-    .grain {
-      pointer-events: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: url('https://i.imgur.com/5bX5aXt.png') repeat;
-      opacity: 0.1;
-      z-index: 0;
-    }
   </style>
 </head>
 <body>
@@ -130,6 +135,7 @@
   <div class="container">
     <header>
       <h1>Don Nathan’s Weekly Meal Preferences</h1>
+      <img class="godfather-img" src="MV5BMjA0MDIwMDYwNl5BMl5BanBnXkFtZTcwMjY0Mzg4Mw@@._V1_.jpg" alt="Vito Corleone">
     </header>
     <form id="weeklyForm">
       <fieldset>
@@ -142,7 +148,90 @@
           <label><input type="checkbox" name="proteins" value="steak"> Steak</label>
         </div>
       </fieldset>
-      <!-- other fields unchanged -->
+      <fieldset>
+        <legend>Choose Carbs</legend>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="carbs" value="rice"> Rice</label>
+          <label><input type="checkbox" name="carbs" value="pasta"> Pasta</label>
+          <label><input type="checkbox" name="carbs" value="potatoes"> Potatoes</label>
+          <label><input type="checkbox" name="carbs" value="grains"> Grains</label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Cuisine Focus</legend>
+        <select name="cuisineFocus" required>
+          <option value="">Select cuisine</option>
+          <option value="italian">Italian</option>
+          <option value="mexican">Mexican</option>
+          <option value="american">American</option>
+          <option value="mediterranean">Mediterranean</option>
+          <option value="chinese">Chinese</option>
+          <option value="thai">Thai</option>
+          <option value="spanish">Spanish</option>
+          <option value="french">French</option>
+        </select>
+      </fieldset>
+      <fieldset>
+        <legend>Meal Styles</legend>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="styles" value="one-pot"> One-Pot</label>
+          <label><input type="checkbox" name="styles" value="sheet-pan"> Sheet-Pan</label>
+          <label><input type="checkbox" name="styles" value="skillet"> Skillet</label>
+          <label><input type="checkbox" name="styles" value="stir-fry"> Stir-Fry</label>
+          <label><input type="checkbox" name="styles" value="soup"> Soup</label>
+          <label><input type="checkbox" name="styles" value="salad"> Salad</label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Quick Meals (&lt;20 mins)</legend>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="quickNights" value="monday"> Mon</label>
+          <label><input type="checkbox" name="quickNights" value="tuesday"> Tue</label>
+          <label><input type="checkbox" name="quickNights" value="wednesday"> Wed</label>
+          <label><input type="checkbox" name="quickNights" value="thursday"> Thu</label>
+          <label><input type="checkbox" name="quickNights" value="friday"> Fri</label>
+          <label><input type="checkbox" name="quickNights" value="saturday"> Sat</label>
+          <label><input type="checkbox" name="quickNights" value="sunday"> Sun</label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Nights Dining Out</legend>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="outNights" value="monday"> Mon</label>
+          <label><input type="checkbox" name="outNights" value="tuesday"> Tue</label>
+          <label><input type="checkbox" name="outNights" value="wednesday"> Wed</label>
+          <label><input type="checkbox" name="outNights" value="thursday"> Thu</label>
+          <label><input type="checkbox" name="outNights" value="friday"> Fri</label>
+          <label><input type="checkbox" name="outNights" value="saturday"> Sat</label>
+          <label><input type="checkbox" name="outNights" value="sunday"> Sun</label>
+        </div>
+      </fieldset>
+      <label for="batchCook" class="toggle">
+        <input type="checkbox" id="batchCook" name="batchCook"> Batch cook night
+      </label>
+      <label for="servings">How many servings per week?</label>
+      <input type="number" id="servings" name="servings" min="1" max="14" placeholder="e.g., 8">
+      <label for="frozenVeggies" class="toggle">
+        <input type="checkbox" id="frozenVeggies" name="frozenVeggies"> Frozen vegetables OK
+      </label>
+      <label for="maxCookTime">Max cook time (minutes):</label>
+      <input type="number" id="maxCookTime" name="maxCookTime" min="10" max="120" placeholder="e.g., 45">
+      <fieldset>
+        <legend>Ingredients to Avoid This Week</legend>
+        <textarea id="avoidIngredients" name="avoidIngredients" rows="2" placeholder="e.g., broccoli, mushrooms"></textarea>
+      </fieldset>
+      <fieldset>
+        <legend>Preferred Vegetables This Week</legend>
+        <textarea id="preferredVeggies" name="preferredVeggies" rows="2" placeholder="e.g., spinach, bell peppers"></textarea>
+      </fieldset>
+      <fieldset>
+        <legend>Spice Level</legend>
+        <select name="spiceLevel">
+          <option value="mild">Mild</option>
+          <option value="medium" selected>Medium</option>
+          <option value="spicy">Spicy</option>
+        </select>
+      </fieldset>
       <button type="submit">Save Preferences</button>
     </form>
     <div id="message"></div>
