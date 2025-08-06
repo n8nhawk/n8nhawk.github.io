@@ -6,7 +6,12 @@
   <title>Don Nathan’s Weekly Meal Preferences</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
   <style>
-    :root { --bg: #111; --primary: #eee; --accent: #b30000; --container-bg: rgba(0,0,0,0.85); }
+    :root {
+      --bg: #111;
+      --primary: #eee;
+      --accent: #b30000;
+      --container-bg: rgba(0,0,0,0.85);
+    }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       background: var(--bg) center/cover no-repeat;
@@ -68,32 +73,45 @@
       color: var(--accent);
       padding: 0 0.5rem;
       font-size: 1.1rem;
+      margin-bottom: 0.5rem;
     }
-    label { display: flex; align-items: center; gap: 0.5rem; }
+    label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.25rem;
+    }
     input, select, textarea {
-      width: 100%; padding: 0.5rem;
-      border: 1px solid #444; border-radius: 4px;
-      background: #222; color: var(--primary);
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid #444;
+      border-radius: 4px;
+      background: #222;
+      color: var(--primary);
       font-family: serif;
     }
-    select[multiple] { height: 6rem; }
+    select[multiple] { height: 8rem; }
     .checkbox-group { display: flex; flex-wrap: wrap; gap: 1rem; }
     .toggle { display: inline-flex; align-items: center; gap: 0.5rem; }
     button {
       background: var(--accent);
       color: #fff;
       padding: 0.75rem 2rem;
-      border: none; border-radius: 4px;
-      font-family: 'Cinzel', serif; font-size: 1rem;
-      cursor: pointer; text-transform: uppercase; letter-spacing: 1px;
+      border: none;
+      border-radius: 4px;
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 1px;
       justify-self: center;
     }
     button:hover { background: #8f0000; }
-    #message { text-align: center; margin-top: 1rem; font-weight: bold; color: var(--accent); }
-    .deploy-note {
-      background: #222; margin: 2rem; padding: 1rem;
-      font-family: monospace; font-size: 0.9rem; color: var(--primary);
-      border: 1px solid #444; border-radius: 4px; text-align: center;
+    #message {
+      text-align: center;
+      margin-top: 1rem;
+      font-weight: bold;
+      color: var(--accent);
     }
   </style>
 </head>
@@ -101,10 +119,18 @@
   <div class="container">
     <header>
       <h1>Don Nathan’s Weekly Meal Preferences</h1>
-      <blockquote>“A Man Who Doesn’t Spend Time With His Family Can Never Be A Real Man.” – Vito Corleone</blockquote>
-      <img class="godfather-img" src="MV5BMjA0MDIwMDYwNl5BMl5BanBnXkFtZTcwMjY0Mzg4Mw@@._V1_.jpg" alt="Vito Corleone">
+      <blockquote>
+        “A Man Who Doesn’t Spend Time With His Family Can Never Be A Real Man.”
+        – Vito Corleone
+      </blockquote>
+      <img
+        class="godfather-img"
+        src="MV5BMjA0MDIwMDYwNl5BMl5BanBnXkFtZTcwMjY0Mzg4Mw@@._V1_.jpg"
+        alt="Vito Corleone"
+      >
     </header>
     <form id="weeklyForm">
+      <!-- Proteins -->
       <fieldset>
         <legend>Select Proteins</legend>
         <div class="checkbox-group">
@@ -115,6 +141,7 @@
           <label><input type="checkbox" name="proteins" value="steak"> Steak</label>
         </div>
       </fieldset>
+      <!-- Carbs -->
       <fieldset>
         <legend>Choose Carbs</legend>
         <div class="checkbox-group">
@@ -124,6 +151,7 @@
           <label><input type="checkbox" name="carbs" value="grains"> Grains</label>
         </div>
       </fieldset>
+      <!-- Cuisine Focus -->
       <fieldset>
         <legend>Cuisine Focus (multiple)</legend>
         <select name="cuisineFocus" multiple>
@@ -137,6 +165,7 @@
           <option value="french">French</option>
         </select>
       </fieldset>
+      <!-- Meal Styles -->
       <fieldset>
         <legend>Meal Styles</legend>
         <div class="checkbox-group">
@@ -148,6 +177,7 @@
           <label><input type="checkbox" name="styles" value="salad"> Salad</label>
         </div>
       </fieldset>
+      <!-- Quick Meals -->
       <fieldset>
         <legend>Quick Meals (<20 mins)</legend>
         <div class="checkbox-group">
@@ -157,4 +187,91 @@
           <label><input type="checkbox" name="quickNights" value="thursday"> Thu</label>
           <label><input type="checkbox" name="quickNights" value="friday"> Fri</label>
           <label><input type="checkbox" name="quickNights" value="saturday"> Sat</label>
-          <label><input type="checkbox" name="quickNights```**```ValueError: replacement string is invalid
+          <label><input type="checkbox" name="quickNights" value="sunday"> Sun</label>
+        </div>
+      </fieldset>
+      <!-- Dining Out Nights -->
+      <fieldset>
+        <legend>Nights Dining Out</legend>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="outNights" value="monday"> Mon</label>
+          <label><input type="checkbox" name="outNights" value="tuesday"> Tue</label>
+          <label><input type="checkbox" name="outNights" value="wednesday"> Wed</label>
+          <label><input type="checkbox" name="outNights" value="thursday"> Thu</label>
+          <label><input type="checkbox" name="outNights" value="friday"> Fri</label>
+          <label><input type="checkbox" name="outNights" value="saturday"> Sat</label>
+          <label><input type="checkbox" name="outNights" value="sunday"> Sun</label>
+        </div>
+      </fieldset>
+      <!-- Batch Cook -->
+      <label class="toggle">
+        <input type="checkbox" name="batchCook"> Batch cook night
+      </label>
+      <!-- Servings -->
+      <label for="servings">How many servings per week?</label>
+      <input type="number" id="servings" name="servings" min="1" max="14" placeholder="e.g., 8">
+      <!-- Frozen Veggies -->
+      <label class="toggle">
+        <input type="checkbox" name="frozenVeggies"> Frozen vegetables OK
+      </label>
+      <!-- Max Cook Time -->
+      <label for="maxCookTime">Max cook time (minutes):</label>
+      <input type="number" id="maxCookTime" name="maxCookTime" min="10" max="120" placeholder="e.g., 45">
+      <!-- Ingredients to Avoid -->
+      <fieldset>
+        <legend>Ingredients to Avoid This Week</legend>
+        <textarea name="avoidIngredients" rows="2" placeholder="e.g., broccoli, mushrooms"></textarea>
+      </fieldset>
+      <!-- Preferred Vegetables -->
+      <fieldset>
+        <legend>Preferred Vegetables This Week</nlegend>
+        <textarea name="preferredVeggies" rows="2" placeholder="e.g., spinach, bell peppers"></textarea>
+      </fieldset>
+      <!-- Spice Level -->
+      <fieldset>
+        <legend>Spice Level</legend>
+        <select name="spiceLevel">
+          <option value="mild">Mild</option>
+          <option value="medium" selected>Medium</option>
+          <option value="spicy">Spicy</option>
+        </select>
+      </fieldset>
+      <!-- Submit -->
+      <button type="submit">Save Preferences</button>
+    </form>
+    <div id="message"></div>
+  </div>
+  <script>
+    document.getElementById('weeklyForm').addEventListener('submit', async e => {
+      e.preventDefault();
+      const form = e.target;
+      const data = {
+        proteins: Array.from(form.querySelectorAll('input[name="proteins"]:checked')).map(cb => cb.value),
+        carbs: Array.from(form.querySelectorAll('input[name="carbs"]:checked')).map(cb => cb.value),
+        cuisineFocus: Array.from(form.querySelectorAll('select[name="cuisineFocus"] option:checked')).map(o => o.value),
+        styles: Array.from(form.querySelectorAll('input[name="styles"]:checked')).map(cb => cb.value),
+        quickNights: Array.from(form.querySelectorAll('input[name="quickNights"]:checked')).map(cb => cb.value),
+        outNights: Array.from(form.querySelectorAll('input[name="outNights"]:checked')).map(cb => cb.value),
+        batchCook: form.batchCook.checked,
+        servings: form.servings.value,
+        frozenVeggies: form.frozenVeggies.checked,
+        maxCookTime: form.maxCookTime.value,
+        avoidIngredients: form.avoidIngredients.value.trim(),
+        preferredVeggies: form.preferredVeggies.value.trim(),
+        spiceLevel: form.spiceLevel.value
+      };
+      try {
+        const res = await fetch('https://nhawk99.app.n8n.cloud/webhook-test/submitpreferences', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        document.getElementById('message').textContent = res.ok ? 'Preferences saved.' : 'Error saving.';
+        if (res.ok) form.reset();
+      } catch (err) {
+        document.getElementById('message').textContent = 'Error: ' + err.message;
+      }
+    });
+  </script>
+</body>
+</html>
