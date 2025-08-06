@@ -6,15 +6,10 @@
   <title>Don Nathan’s Weekly Meal Preferences</title>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg: #111;
-      --primary: #eee;
-      --accent: #b30000;
-      --container-bg: rgba(0, 0, 0, 0.8);
-    }
+    :root { --bg: #111; --primary: #eee; --accent: #b30000; --container-bg: rgba(0,0,0,0.85); }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      background: var(--bg) fixed;
+      background: var(--bg) center/cover no-repeat;
       color: var(--primary);
       font-family: 'Playfair Display', serif;
       padding: 1rem;
@@ -25,11 +20,10 @@
       background: var(--container-bg);
       border: 2px solid var(--accent);
       border-radius: 8px;
-      overflow: hidden;
       box-shadow: 0 0 20px rgba(0,0,0,0.7);
+      overflow: hidden;
     }
     header {
-      position: relative;
       text-align: center;
       background: rgba(0,0,0,0.6);
       padding: 2rem;
@@ -52,7 +46,9 @@
     .godfather-img {
       display: block;
       margin: 1rem auto;
-      width: 180px;
+      max-width: 100%;
+      width: 200px;
+      height: auto;
       border: 3px solid var(--accent);
       border-radius: 6px;
     }
@@ -60,7 +56,7 @@
       background: rgba(0,0,0,0.7);
       padding: 2rem;
       display: grid;
-      gap: 1.5rem;
+      gap: 1rem;
     }
     fieldset {
       border: 1px solid var(--accent);
@@ -74,59 +70,31 @@
       padding: 0 0.5rem;
       font-size: 1.1rem;
     }
-    label {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
+    label { display: flex; align-items: center; gap: 0.5rem; }
     input, select, textarea {
-      width: 100%;
-      padding: 0.5rem;
-      border: 1px solid #444;
-      border-radius: 4px;
-      background: #222;
-      color: var(--primary);
+      width: 100%; padding: 0.5rem;
+      border: 1px solid #444; border-radius: 4px;
+      background: #222; color: var(--primary);
       font-family: serif;
     }
-    select[multiple] { height: 5rem; }
-    .checkbox-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
+    select[multiple] { height: 6rem; }
+    .checkbox-group { display: flex; flex-wrap: wrap; gap: 1rem; }
     .toggle { display: inline-flex; align-items: center; gap: 0.5rem; }
     button {
       background: var(--accent);
       color: #fff;
       padding: 0.75rem 2rem;
-      border: none;
-      border-radius: 4px;
-      font-family: 'Cinzel', serif;
-      font-size: 1rem;
-      cursor: pointer;
+      border: none; border-radius: 4px;
+      font-family: 'Cinzel', serif; font-size: 1rem;
+      cursor: pointer; text-transform: uppercase; letter-spacing: 1px;
       justify-self: center;
-      letter-spacing: 1px;
-      text-transform: uppercase;
     }
-    button:hover {
-      background: #8f0000;
-    }
-    #message {
-      text-align: center;
-      margin-top: 1rem;
-      font-weight: bold;
-      color: var(--accent);
-    }
+    button:hover { background: #8f0000; }
+    #message { text-align: center; margin-top: 1rem; font-weight: bold; color: var(--accent); }
     .deploy-note {
-      background: #222;
-      margin: 2rem;
-      padding: 1rem;
-      font-family: monospace;
-      font-size: 0.9rem;
-      color: var(--primary);
-      border: 1px solid #444;
-      border-radius: 4px;
-      text-align: center;
+      background: #222; margin: 2rem; padding: 1rem;
+      font-family: monospace; font-size: 0.9rem; color: var(--primary);
+      border: 1px solid #444; border-radius: 4px; text-align: center;
     }
   </style>
 </head>
@@ -135,10 +103,98 @@
     <header>
       <h1>Don Nathan’s Weekly Meal Preferences</h1>
       <blockquote>“A Man Who Doesn't Spend Time With His Family Can Never Be A Real Man.” – Vito Corleone</blockquote>
-      <img class="godfather-img" src="Screenshot%202025-08-06%20at%201.35.21%20AM.png" alt="Vito Corleone">
+      <img class="godfather-img" src="MV5BMjA0MDIwMDYwNl5BMl5BanBnXkFtZTcwMjY0Mzg4Mw@@._V1_.jpg" alt="Vito Corleone">
     </header>
     <form id="weeklyForm">
-      <!-- full form fields omitted for brevity -->
+      <fieldset>
+        <legend>Select Proteins</legend>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="proteins" value="chicken"> Chicken</label>
+          <label><input type="checkbox" name="proteins" value="beef"> Beef</label>
+          <label><input type="checkbox" name="proteins" value="turkey"> Turkey</label>
+          <label><input type="checkbox" name="proteins" value="sausage"> Sausage</label>
+          <label><input type="checkbox" name="proteins" value="steak"> Steak</label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Choose Carbs</legend>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="carbs" value="rice"> Rice</label>
+          <label><input type="checkbox" name="carbs" value="pasta"> Pasta</label>
+          <label><input type="checkbox" name="carbs" value="potatoes"> Potatoes</label>
+          <label><input type="checkbox" name="carbs" value="grains"> Grains</label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Cuisine Focus (multiple)</legend>
+        <select name="cuisineFocus" multiple>
+          <option value="italian">Italian</option>
+          <option value="mexican">Mexican</option>
+          <option value="american">American</option>
+          <option value="mediterranean">Mediterranean</option>
+          <option value="chinese">Chinese</option>
+          <option value="thai">Thai</option>
+          <option value="spanish">Spanish</option>
+          <option value="french">French</option>
+        </select>
+      </fieldset>
+      <fieldset>
+        <legend>Meal Styles</legend>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="styles" value="one-pot"> One-Pot</label>
+          <label><input type="checkbox" name="styles" value="sheet-pan"> Sheet-Pan</label>
+          <label><input type="checkbox" name="styles" value="skillet"> Skillet</label>
+          <label><input type="checkbox" name="styles" value="stir-fry"> Stir-Fry</label>
+          <label><input type="checkbox" name="styles" value="soup"> Soup</label>
+          <label><input type="checkbox" name="styles" value="salad"> Salad</label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Quick Meals (&lt;20 mins)</legend>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="quickNights" value="monday"> Mon</label>
+          <label><input type="checkbox" name="quickNights" value="tuesday"> Tue</label>
+          <label><input type="checkbox" name="quickNights" value="wednesday"> Wed</label>
+          <label><input type="checkbox" name="quickNights" value="thursday"> Thu</label>
+          <label><input type="checkbox" name="quickNights" value="friday"> Fri</label>
+          <label><input type="checkbox" name="quickNights" value="saturday"> Sat</label>
+          <label><input type="checkbox" name="quickNights" value="sunday"> Sun</label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Nights Dining Out</legend>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="outNights" value="monday"> Mon</label>
+          <label><input type="checkbox" name="outNights" value="tuesday"> Tue</label>
+          <label><input type="checkbox" name="outNights" value="wednesday"> Wed</label>
+          <label><input type="checkbox" name="outNights" value="thursday"> Thu</label>
+          <label><input type="checkbox" name="outNights" value="friday"> Fri</label>
+          <label><input type="checkbox" name="outNights" value="saturday"> Sat</label>
+          <label><input type="checkbox" name="outNights" value="sunday"> Sun</label>
+        </div>
+      </fieldset>
+      <label class="toggle"><input type="checkbox" name="batchCook"> Batch cook night</label>
+      <label for="servings">How many servings per week?</label>
+      <input type="number" id="servings" name="servings" min="1" max="14" placeholder="e.g., 8">
+      <label class="toggle"><input type="checkbox" name="frozenVeggies"> Frozen vegetables OK</label>
+      <label for="maxCookTime">Max cook time (minutes):</label>
+      <input type="number" id="maxCookTime" name="maxCookTime" min="10" max="120" placeholder="e.g., 45">
+      <fieldset>
+        <legend>Ingredients to Avoid</legend>
+        <textarea name="avoidIngredients" rows="2" placeholder="e.g., broccoli"></textarea>
+      </fieldset>
+      <fieldset>
+        <legend>Preferred Vegetables</legend>
+        <textarea name="preferredVeggies" rows="2" placeholder="e.g., spinach"></textarea>
+      </fieldset>
+      <fieldset>
+        <legend>Spice Level</legend>
+        <select name="spiceLevel">
+          <option value="mild">Mild</option>
+          <option value="medium" selected>Medium</option>
+          <option value="spicy">Spicy</option>
+        </select>
+      </fieldset>
       <button type="submit">Save Preferences</button>
     </form>
     <div id="message"></div>
@@ -150,17 +206,30 @@
     document.querySelector('#weeklyForm').addEventListener('submit', async e => {
       e.preventDefault();
       const form = e.target;
-      const data = {/* payload */};
+      const data = {
+        proteins: Array.from(form.querySelectorAll('input[name="proteins"]:checked')).map(cb => cb.value),
+        carbs: Array.from(form.querySelectorAll('input[name="carbs"]:checked')).map(cb => cb.value),
+        cuisineFocus: Array.from(form.querySelectorAll('select[name="cuisineFocus"] option:checked')).map(o=>o.value),
+        styles: Array.from(form.querySelectorAll('input[name="styles"]:checked')).map(cb=>cb.value),
+        quickNights: Array.from(form.querySelectorAll('input[name="quickNights"]:checked')).map(cb=>cb.value),
+        outNights: Array.from(form.querySelectorAll('input[name="outNights"]:checked')).map(cb=>cb.value),
+        batchCook: form.batchCook.checked,
+        servings: form.servings.value,
+        frozenVeggies: form.frozenVeggies.checked,
+        maxCookTime: form.maxCookTime.value,
+        avoidIngredients: form.avoidIngredients.value.trim(),
+        preferredVeggies: form.preferredVeggies.value.trim(),
+        spiceLevel: form.spiceLevel.value
+      };
       try {
-        const res = await fetch('https://YOUR_N8N_HOST/webhook/submitPreferences', {
-          method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data)
-        });
-        document.getElementById('message').textContent = res.ok ? 'Preferences saved.' : 'Save failed.';
+        const res = await fetch('https://YOUR_N8N_HOST/webhook/submitPreferences',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
+        document.getElementById('message').textContent = res.ok?'Saved.':'Error saving.';
         if(res.ok) form.reset();
-      } catch(err) {
-        document.getElementById('message').textContent = 'Error: '+err.message;
-      }
+      } catch(err) { document.getElementById('message').textContent='Error: '+err.message; }
     });
   </script>
 </body>
 </html>
+git add index.html MV5BMjA0MDIwMDYwNl5BMl5BanBnXkFtZTcwMjY0Mzg4Mw@@._V1_.jpg
+git commit -m "Fix image path and layout"
+git push
