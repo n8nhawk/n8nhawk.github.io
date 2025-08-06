@@ -150,7 +150,7 @@
         </div>
       </fieldset>
       <fieldset>
-        <legend>Quick Meals (&lt;20 mins)</legend>
+        <legend>Quick Meals (<20 mins)</legend>
         <div class="checkbox-group">
           <label><input type="checkbox" name="quickNights" value="monday"> Mon</label>
           <label><input type="checkbox" name="quickNights" value="tuesday"> Tue</label>
@@ -158,78 +158,4 @@
           <label><input type="checkbox" name="quickNights" value="thursday"> Thu</label>
           <label><input type="checkbox" name="quickNights" value="friday"> Fri</label>
           <label><input type="checkbox" name="quickNights" value="saturday"> Sat</label>
-          <label><input type="checkbox" name="quickNights" value="sunday"> Sun</label>
-        </div>
-      </fieldset>
-      <fieldset>
-        <legend>Nights Dining Out</legend>
-        <div class="checkbox-group">
-          <label><input type="checkbox" name="outNights" value="monday"> Mon</label>
-          <label><input type="checkbox" name="outNights" value="tuesday"> Tue</label>
-          <label><input type="checkbox" name="outNights" value="wednesday"> Wed</label>
-          <label><input type="checkbox" name="outNights" value="thursday"> Thu</label>
-          <label><input type="checkbox" name="outNights" value="friday"> Fri</label>
-          <label><input type="checkbox" name="outNights" value="saturday"> Sat</label>
-          <label><input type="checkbox" name="outNights" value="sunday"> Sun</label>
-        </div>
-      </fieldset>
-      <label class="toggle"><input type="checkbox" name="batchCook"> Batch cook night</label>
-      <label for="servings">How many servings per week?</label>
-      <input type="number" id="servings" name="servings" min="1" max="14" placeholder="e.g., 8">
-      <label class="toggle"><input type="checkbox" name="frozenVeggies"> Frozen vegetables OK</label>
-      <label for="maxCookTime">Max cook time (minutes):</label>
-      <input type="number" id="maxCookTime" name="maxCookTime" min="10" max="120" placeholder="e.g., 45">
-      <fieldset>
-        <legend>Ingredients to Avoid</legend>
-        <textarea name="avoidIngredients" rows="2" placeholder="e.g., broccoli"></textarea>
-      </fieldset>
-      <fieldset>
-        <legend>Preferred Vegetables</legend>
-        <textarea name="preferredVeggies" rows="2" placeholder="e.g., spinach"></textarea>
-      </fieldset>
-      <fieldset>
-        <legend>Spice Level</legend>
-        <select name="spiceLevel">
-          <option value="mild">Mild</option>
-          <option value="medium" selected>Medium</option>
-          <option value="spicy">Spicy</option>
-        </select>
-      </fieldset>
-      <button type="submit">Save Preferences</button>
-    </form>
-    <div id="message"></div>
-    <div class="deploy-note">
-      To publish: <code>git add . && git commit -m "Fix layout & image" && git push</code>
-    </div>
-  </div>
-  <script>
-    document.querySelector('#weeklyForm').addEventListener('submit', async e => {
-      e.preventDefault();
-      const form = e.target;
-      const data = {
-        proteins: Array.from(form.querySelectorAll('input[name="proteins"]:checked')).map(cb => cb.value),
-        carbs: Array.from(form.querySelectorAll('input[name="carbs"]:checked')).map(cb => cb.value),
-        cuisineFocus: Array.from(form.querySelectorAll('select[name="cuisineFocus"] option:checked')).map(o=>o.value),
-        styles: Array.from(form.querySelectorAll('input[name="styles"]:checked')).map(cb=>cb.value),
-        quickNights: Array.from(form.querySelectorAll('input[name="quickNights"]:checked')).map(cb=>cb.value),
-        outNights: Array.from(form.querySelectorAll('input[name="outNights"]:checked')).map(cb=>cb.value),
-        batchCook: form.batchCook.checked,
-        servings: form.servings.value,
-        frozenVeggies: form.frozenVeggies.checked,
-        maxCookTime: form.maxCookTime.value,
-        avoidIngredients: form.avoidIngredients.value.trim(),
-        preferredVeggies: form.preferredVeggies.value.trim(),
-        spiceLevel: form.spiceLevel.value
-      };
-      try {
-        const res = await fetch('https://YOUR_N8N_HOST/webhook/submitPreferences',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
-        document.getElementById('message').textContent = res.ok?'Saved.':'Error saving.';
-        if(res.ok) form.reset();
-      } catch(err) { document.getElementById('message').textContent='Error: '+err.message; }
-    });
-  </script>
-</body>
-</html>
-git add index.html MV5BMjA0MDIwMDYwNl5BMl5BanBnXkFtZTcwMjY0Mzg4Mw@@._V1_.jpg
-git commit -m "Fix image path and layout"
-git push
+          <label><input type="checkbox" name="quickNights`
