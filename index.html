@@ -55,16 +55,18 @@
   </div>
   <script>
     document.getElementById('weeklyForm').addEventListener('submit',async e=>{
-      e.preventDefault();const form=e.target;const data={proteins:Array.from(form.querySelectorAll('input[name="proteins"]:checked')).map(cb=>cb.value),carbs:Array.from(form.querySelectorAll('input[name="carbs"]:checked')).map(cb=>cb.value),cuisineFocus:Array.from(form.querySelectorAll('select[name="cuisineFocus"] option:checked')).map(o=>o.value),styles:Array.from(form.querySelectorAll('input[name="styles"]:checked')).map(cb=>cb.value),quickNights:Array.from(form.querySelectorAll('input[name="quickNights"]:checked')).map(cb=>cb.value),outNights:Array.from(form.querySelectorAll('input[name="outNights"]:checked')).map(cb=>cb.value),batchCook:form.batchCook.checked,servings:form.servings.value,frozenVeggies:form.frozenVeggies.checked,maxCookTime:form.maxCookTime.value,avoidIngredients:form.avoidIngredients.value.trim(),preferredVeggies:form.preferredVeggies.value.trim(),spiceLevel:form.spiceLevel.value};try{const res=await fetch('https://nhawk99.app.n8n.cloud/webhook-test/submitPreferences',{method:'POST',mode:'cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});document.getElementById('message').textContent=res.ok?'Preferences saved.':'Error saving.';if(res.ok)form.reset();}catch(err){document.getElementById('message').textContent='Error: '+err.message;}});
+      e.preventDefault();const form=e.target;const data={proteins:Array.from(form.querySelectorAll('input[name="proteins"]:checked')).map(cb=>cb.value),carbs:Array.from(form.querySelectorAll('input[name="carbs"]:checked')).map(cb=>cb.value),cuisineFocus:Array.from(form.querySelectorAll('select[name="cuisineFocus"] option:checked')).map(o=>o.value),styles:Array.from(form.querySelectorAll('input[name="styles"]:checked')).map(cb=>cb.value),quickNights:Array.from(form.querySelectorAll('input[name="quickNights"]:checked')).map(cb=>cb.value),outNights:Array.from(form.querySelectorAll('input[name="outNights"]:checked')).map(cb=>cb.value),batchCook:form.batchCook.checked,servings:form.servings.value,frozenVeggies:form.frozenVeggies.checked,maxCookTime:form.maxCookTime.value,avoidIngredients:form.avoidIngredients.value.trim(),preferredVeggies:form.preferredVeggies.value.trim(),spiceLevel:form.spiceLevel.value};try{const res=await fetch('https://nhawk99.app.n8n.cloud/webhook/submitPreferences',{method:'POST',mode:'cors',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});document.getElementById('message').textContent=res.ok?'Preferences saved.':'Error saving.';if(res.ok)form.reset();}catch(err){document.getElementById('message').textContent='Error: '+err.message;}});
   </script>
-  <div class="deploy-note">To publish: <code>git add . && git commit -m "Fix fetch URL" && git push</code></div>
-</body>
-</html>
-<div class="deploy-note">
+  <div class="deploy-note">
   To publish your changes, run the following commands:<br>
   <code>
     git add index.html<br>
-    git commit -m "Fix fetch URL and deploy"<br>
-    git push
+    git commit -m "Fix fetch URL and deploy"
+    <br>git push
   </code>
 </div>
+</body>
+</html>
+git add index.html
+git commit -m "Point form to correct webhook path"
+git push
