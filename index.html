@@ -3,42 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nathan’s Weekly Meal Preferences</title>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <title>Don Nathan’s Weekly Meal Preferences</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #2C3E50;
-      --accent: #E67E22;
-      --bg: #ECF0F1;
-      --white: #ffffff;
+      --bg: #000000;
+      --primary: #ffffff;
+      --accent: #b30000;
+      --container-bg: rgba(0, 0, 0, 0.85);
     }
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: 'Roboto', sans-serif;
-      background-color: var(--bg);
+      background: var(--bg) url('') center/cover;
       color: var(--primary);
+      font-family: 'Playfair Display', serif;
       line-height: 1.6;
+      padding: 2rem 1rem;
     }
     .container {
       max-width: 700px;
-      margin: 2rem auto;
-      background: var(--white);
+      margin: auto;
+      background: var(--container-bg);
+      border: 2px solid var(--accent);
       border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       overflow: hidden;
+      box-shadow: 0 0 20px rgba(0,0,0,0.8);
     }
     header {
-      background: var(--primary);
-      color: var(--white);
-      padding: 1.5rem;
+      background: #111;
       text-align: center;
+      padding: 2rem;
+      border-bottom: 2px solid var(--accent);
     }
     header h1 {
-      font-size: 1.75rem;
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 2rem;
+      color: var(--accent);
+      position: relative;
+    }
+    header h1::after {
+      content: '';
+      display: block;
+      width: 100px;
+      height: 4px;
+      background: var(--accent);
+      margin: 0.5rem auto 0;
     }
     form {
       padding: 2rem;
@@ -46,70 +56,73 @@
       gap: 1.5rem;
     }
     fieldset {
-      border: 2px solid var(--accent);
+      border: 1px solid var(--accent);
       border-radius: 6px;
       padding: 1rem;
     }
     legend {
-      font-weight: 700;
-      padding: 0 0.5rem;
+      font-family: 'Cinzel', serif;
       color: var(--accent);
+      font-size: 1.1rem;
+      padding: 0 0.5rem;
     }
     label {
       display: flex;
       align-items: center;
       gap: 0.5rem;
       margin-bottom: 0.5rem;
+      font-family: serif;
     }
-    input[type="text"],
-    input[type="number"],
-    select,
-    textarea {
+    input[type="text"], input[type="number"], select, textarea {
       width: 100%;
       padding: 0.5rem;
-      border: 1px solid #ccc;
+      border: 1px solid #444;
       border-radius: 4px;
-      font-size: 1rem;
+      background: #111;
+      color: var(--primary);
+      font-family: serif;
     }
     .checkbox-group {
       display: flex;
       flex-wrap: wrap;
       gap: 1rem;
     }
-    .checkbox-group label {
-      margin: 0;
-    }
-    .toggle {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
+    .checkbox-group label { margin: 0; }
+    .toggle { display: inline-flex; align-items: center; gap: 0.5rem; }
     button {
       background: var(--accent);
       color: var(--white);
       border: none;
-      padding: 0.75rem 1.5rem;
+      padding: 0.75rem 2rem;
       border-radius: 4px;
-      font-size: 1rem;
+      font-family: 'Cinzel', serif;
+      font-size: 1.1rem;
       cursor: pointer;
-      transition: background 0.3s;
       justify-self: center;
+      transition: background 0.3s;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
     button:hover {
-      background: #cf711f;
+      background: #8f0000;
     }
     #message {
       margin: 1rem 0;
       text-align: center;
-      font-weight: 700;
+      font-family: serif;
+      font-weight: bold;
       color: var(--accent);
     }
+    /* Scrollbar for dark theme */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+    ::-webkit-scrollbar-track { background: #000; }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
-      <h1>Nathan’s Weekly Meal Preferences</h1>
+      <h1>Don Nathan’s Weekly Meal Preferences</h1>
     </header>
     <form id="weeklyForm">
       <fieldset>
@@ -118,9 +131,8 @@
           <label><input type="checkbox" name="proteins" value="chicken"> Chicken</label>
           <label><input type="checkbox" name="proteins" value="beef"> Beef</label>
           <label><input type="checkbox" name="proteins" value="turkey"> Turkey</label>
-          <label><input type="checkbox" name="proteins" value="beans"> Beans/Legumes</label>
-          <label><input type="checkbox" name="proteins" value="tofu"> Tofu</label>
-          <label><input type="checkbox" name="proteins" value="other"> Other</label>
+          <label><input type="checkbox" name="proteins" value="sausage"> Sausage</label>
+          <label><input type="checkbox" name="proteins" value="steak"> Steak</label>
         </div>
       </fieldset>
 
@@ -162,7 +174,7 @@
       </fieldset>
 
       <fieldset>
-        <legend>Quick Meals (&lt;20 mins)</legend>
+        <legend>Quick Meals (&lt;20 mins)</legend>
         <div class="checkbox-group">
           <label><input type="checkbox" name="quickNights" value="monday"> Mon</label>
           <label><input type="checkbox" name="quickNights" value="tuesday"> Tue</label>
@@ -174,12 +186,25 @@
         </div>
       </fieldset>
 
+      <fieldset>
+        <legend>Nights Dining Out</legend>
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="outNights" value="monday"> Mon</label>
+          <label><input type="checkbox" name="outNights" value="tuesday"> Tue</label>
+          <label><input type="checkbox" name="outNights" value="wednesday"> Wed</label>
+          <label><input type="checkbox" name="outNights" value="thursday"> Thu</label>
+          <label><input type="checkbox" name="outNights" value="friday"> Fri</label>
+          <label><input type="checkbox" name="outNights" value="saturday"> Sat</label>
+          <label><input type="checkbox" name="outNights" value="sunday"> Sun</label>
+        </div>
+      </fieldset>
+
       <label for="batchCook" class="toggle">
         <input type="checkbox" id="batchCook" name="batchCook"> Batch cook night
       </label>
 
-      <label for="servings">Servings:</label>
-      <input type="number" id="servings" name="servings" min="1" max="10" placeholder="e.g., 2">
+      <label for="servings">How many servings per week?</label>
+      <input type="number" id="servings" name="servings" min="1" max="14" placeholder="e.g., 8">
 
       <label for="frozenVeggies" class="toggle">
         <input type="checkbox" id="frozenVeggies" name="frozenVeggies"> Frozen vegetables OK
@@ -188,8 +213,24 @@
       <label for="maxCookTime">Max cook time (minutes):</label>
       <input type="number" id="maxCookTime" name="maxCookTime" min="10" max="120" placeholder="e.g., 45">
 
-      <label for="specialNotes">Special requests or notes</label>
-      <textarea id="specialNotes" name="specialNotes" rows="3" placeholder="Any other preferences..."></textarea>
+      <fieldset>
+        <legend>Ingredients to Avoid This Week</legend>
+        <textarea id="avoidIngredients" name="avoidIngredients" rows="2" placeholder="e.g., broccoli, mushrooms"></textarea>
+      </fieldset>
+
+      <fieldset>
+        <legend>Preferred Vegetables This Week</legend>
+        <textarea id="preferredVeggies" name="preferredVeggies" rows="2" placeholder="e.g., spinach, bell peppers"></textarea>
+      </fieldset>
+
+      <fieldset>
+        <legend>Spice Level</legend>
+        <select name="spiceLevel">
+          <option value="mild">Mild</option>
+          <option value="medium" selected>Medium</option>
+          <option value="spicy">Spicy</option>
+        </select>
+      </fieldset>
 
       <button type="submit">Save Preferences</button>
     </form>
@@ -200,42 +241,12 @@
     const form = document.getElementById('weeklyForm');
     const messageEl = document.getElementById('message');
 
-    form.addEventListener('submit', async (e) => {
+    form.addEventListener('submit', async e => {
       e.preventDefault();
-
-      const proteins = Array.from(form.querySelectorAll('input[name="proteins"]:checked')).map(cb => cb.value);
-      const carbs = Array.from(form.querySelectorAll('input[name="carbs"]:checked')).map(cb => cb.value);
-      const cuisineFocus = form.cuisineFocus.value;
-      const styles = Array.from(form.querySelectorAll('input[name="styles"]:checked')).map(cb => cb.value);
-      const quickNights = Array.from(form.querySelectorAll('input[name="quickNights"]:checked')).map(cb => cb.value);
-      const batchCook = form.batchCook.checked;
-      const servings = form.servings.value;
-      const frozenVeggies = form.frozenVeggies.checked;
-      const maxCookTime = form.maxCookTime.value;
-      const specialNotes = form.specialNotes.value.trim();
-
-      const data = { proteins, carbs, cuisineFocus, styles, quickNights, batchCook, servings, frozenVeggies, maxCookTime, specialNotes };
-
-      try {
-        const response = await fetch('https://YOUR_N8N_HOST/webhook/submitPreferences', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data)
-        });
-        if (response.ok) {
-          messageEl.textContent = 'Preferences saved.';
-          form.reset();
-        } else {
-          messageEl.textContent = 'Save failed. Please try again.';
-        }
-      } catch (err) {
-        messageEl.textContent = 'Error: ' + err.message;
-      }
-    });
+      const data = { proteins: Array.from(form.querySelectorAll('input[name="proteins"]:checked')).map(cb => cb.value), carbs: Array.from(form.querySelectorAll('input[name="carbs"]:checked')).map(cb => cb.value), cuisineFocus: form.cuisineFocus.value, styles: Array.from(form.querySelectorAll('input[name="styles"]:checked')).map(cb => cb.value), quickNights: Array.from(form.querySelectorAll('input[name="quickNights"]:checked')).map(cb => cb.value), outNights: Array.from(form.querySelectorAll('input[name="outNights"]:checked')).map(cb => cb.value), batchCook: form.batchCook.checked, servings: form.servings.value, frozenVeggies: form.frozenVeggies.checked, maxCookTime: form.maxCookTime.value, avoidIngredients: form.avoidIngredients.value.trim(), preferredVeggies: form.preferredVeggies.value.trim(), spiceLevel: form.spiceLevel.value };
+      try { const response = await fetch('https://YOUR_N8N_HOST/webhook/submitPreferences', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data) }); if (response.ok) { messageEl.textContent = 'Preferences saved.'; form.reset(); } else { messageEl.textContent = 'Save failed. Please try again.'; } } catch (err) { messageEl.textContent = 'Error: ' + err.message; } });
   </script>
 </body>
 </html>
-git add index.html
-git commit -m "Initial site upload"
-git push
+
 
