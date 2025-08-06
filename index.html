@@ -24,7 +24,7 @@
       pointer-events: none;
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: url('https://i.imgur.com/5bX5aXt.png') repeat;
+      background: url('grain.png') repeat;
       opacity: 0.1;
       z-index: 0;
     }
@@ -55,7 +55,9 @@
       margin-bottom: 1rem;
     }
     .godfather-img {
-      width: 150px;
+      display: block;
+      margin: 0 auto;
+      width: 200px;
       height: auto;
       border: 4px solid var(--accent);
       border-radius: 8px;
@@ -98,12 +100,7 @@
       flex-wrap: wrap;
       gap: 1rem;
     }
-    .toggle {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      margin-top: 1rem;
-    }
+    .toggle { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1rem; }
     button {
       background: var(--accent);
       color: var(--primary);
@@ -118,16 +115,8 @@
       text-transform: uppercase;
       letter-spacing: 1px;
     }
-    button:hover {
-      background: #8f0000;
-    }
-    #message {
-      margin: 1rem 0;
-      text-align: center;
-      font-family: serif;
-      font-weight: bold;
-      color: var(--accent);
-    }
+    button:hover { background: #8f0000; }
+    #message { margin: 1rem 0; text-align: center; font-family: serif; font-weight: bold; color: var(--accent); }
   </style>
 </head>
 <body>
@@ -135,7 +124,7 @@
   <div class="container">
     <header>
       <h1>Don Nathan’s Weekly Meal Preferences</h1>
-      <img class="godfather-img" src="MV5BMjA0MDIwMDYwNl5BMl5BanBnXkFtZTcwMjY0Mzg4Mw@@._V1_.jpg" alt="Vito Corleone">
+      <img class="godfather-img" src="Screenshot 2025-08-06 at 1.35.21 AM.png" alt="Vito Corleone">
     </header>
     <form id="weeklyForm">
       <fieldset>
@@ -183,7 +172,7 @@
         </div>
       </fieldset>
       <fieldset>
-        <legend>Quick Meals (&lt;20 mins)</legend>
+        <legend>Quick Meals (<20 mins)</legend>
         <div class="checkbox-group">
           <label><input type="checkbox" name="quickNights" value="monday"> Mon</label>
           <label><input type="checkbox" name="quickNights" value="tuesday"> Tue</label>
@@ -203,7 +192,7 @@
           <label><input type="checkbox" name="outNights" value="thursday"> Thu</label>
           <label><input type="checkbox" name="outNights" value="friday"> Fri</label>
           <label><input type="checkbox" name="outNights" value="saturday"> Sat</label>
-          <label><input type="checkbox" name="outNights" value="sunday"> Sun</label>
+          <label><input type="checkbox" name="outNights" value="Sunday"> Sun</label>
         </div>
       </fieldset>
       <label for="batchCook" class="toggle">
@@ -237,10 +226,9 @@
     <div id="message"></div>
   </div>
   <script>
-    const form = document.getElementById('weeklyForm');
-    const messageEl = document.getElementById('message');
-    form.addEventListener('submit', async e => {
+    document.getElementById('weeklyForm').addEventListener('submit', async e => {
       e.preventDefault();
+      const form = e.target;
       const data = {
         proteins: Array.from(form.querySelectorAll('input[name="proteins"]:checked')).map(cb => cb.value),
         carbs: Array.from(form.querySelectorAll('input[name="carbs"]:checked')).map(cb => cb.value),
@@ -258,23 +246,14 @@
       };
       try {
         const response = await fetch('https://YOUR_N8N_HOST/webhook/submitPreferences', {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify(data)
-        });
-        if (response.ok) {
-          messageEl.textContent = 'Preferences saved.';
-          form.reset();
-        } else {
-          messageEl.textContent = 'Save failed. Please try again.';
-        }
+          method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(data) });
+        if (response.ok) { document.getElementById('message').textContent = 'Preferences saved.'; form.reset(); } 
+        else { document.getElementById('message').textContent = 'Save failed. Please try again.'; }
       } catch (err) {
-        messageEl.textContent = 'Error: ' + err.message;
+        document.getElementById('message').textContent = 'Error: ' + err.message;
       }
     });
   </script>
 </body>
 </html>
-git add index.html
-git commit -m "Update Godfather-themed meal form"
-git push
+git add . && git commit -m "Update Godfather-themed meal form" && git push
